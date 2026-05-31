@@ -145,6 +145,10 @@ function bindAuthForms() {
   document.getElementById("userLoginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     clearMessage();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Logging in...";
     try {
       const form = new FormData(e.target);
       const payload = {
@@ -160,12 +164,19 @@ function bindAuthForms() {
       e.target.reset();
     } catch (err) {
       showMessage(err.message, "danger");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
     }
   });
 
   document.getElementById("vendorLoginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     clearMessage();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Logging in...";
     try {
       const form = new FormData(e.target);
       const payload = { email: form.get("email"), password: form.get("password") };
@@ -182,6 +193,9 @@ function bindAuthForms() {
       e.target.reset();
     } catch (err) {
       showMessage(err.message, "danger");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
     }
   });
 
