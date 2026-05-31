@@ -86,7 +86,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        // Use a lower work factor (4 instead of 10) to speed up logins on free-tier CPUs
+        return new BCryptPasswordEncoder(4);
     }
 
     @Bean
