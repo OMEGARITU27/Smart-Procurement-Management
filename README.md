@@ -1,4 +1,4 @@
-# RiteshProcurement
+# Smart Procurement Management
 
 Smart Procurement and Vendor Management System built with Spring Boot, MySQL, JWT security, and a role-aware web frontend.
 
@@ -117,60 +117,6 @@ Using Maven wrapper:
 - Windows: `mvnw.cmd spring-boot:run`
 - Linux/macOS: `./mvnw spring-boot:run`
 
-Or build and run:
-
-- `mvn clean install`
-- `mvn spring-boot:run`
-
-### 4) Access App
-
-- Frontend: `http://localhost:8080/`
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
-
-## Deploy to Railway (Recommended)
-
-This project is ready for Railway deployment with a public URL.
-
-### 1) Push code to GitHub
-
-Railway deploys directly from your GitHub repository.
-
-### 2) Create Railway project
-
-- Create a new project in Railway
-- Add your GitHub repo
-- Add a MySQL service/plugin in the same Railway project
-
-### 3) Set environment variables in Railway
-
-Set these in your Railway service variables:
-
-- `SPRING_PROFILES_ACTIVE=prod`
-- `PORT` (Railway sets this automatically)
-- `DB_URL=jdbc:mysql://<host>:<port>/<database>?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true`
-- `DB_USER=<mysql-username>`
-- `DB_PASS=<mysql-password>`
-- `JWT_SECRET=<at-least-32-char-strong-secret>`
-- `JWT_EXPIRATION=86400000`
-- `PROCUREMENT_ADMIN_EMAIL=adminritesh@gmail.com`
-- `MAIL_HOST=smtp-relay.brevo.com`
-- `MAIL_PORT=587`
-- `MAIL_USERNAME=<your-mail-username>`
-- `MAIL_PASSWORD=<your-mail-password-or-api-key>`
-
-### 4) Build and start commands
-
-Railway auto-detects Maven, but if needed:
-
-- Build command: `mvn clean package`
-- Start command: `java -jar target/*.jar`
-
-### 5) Verify deployment
-
-- Open Railway-generated public URL (`https://<app>.railway.app`)
-- Login using admin credentials
-- Validate frontend, API, and DB-backed workflows
-
 ## Configuration Notes
 
 - Server port is configurable with `server.port`
@@ -184,15 +130,6 @@ Railway auto-detects Maven, but if needed:
 - `Project_Workflow_Architecture.md` - high-level process flow
 - `Entity_Structure_and_Examples.md` - entity mapping and examples
 - `Security_Workflow_and_File_Usage.md` - security and usage notes
-
-## Typical Demo Flow (For Presentation)
-
-1. Login as admin and review pending approvals
-2. Register employee/vendor and show approval workflow
-3. Create requisition and purchase order
-4. Approve/reject PO from manager/admin path
-5. Login as vendor and update PO status from vendor portal
-6. Generate and download vendor report
 
 ## License
 
