@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ritesh Procurement Portal</title>
+  <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- status alert container -->
+  <div id="statusAlert" class="alert d-none" role="alert"></div>
+
+  <!-- App Section (Sidebar + Main Content) -->
+  <div id="appSection" class="app-container d-none">
+    <aside class="sidebar glass-panel">
+      <div class="sidebar-header">
+        <h1>Procurement</h1>
+        <p>Premium Portal</p>
+      </div>
+      
+      <div class="mb-4">
+        <span id="sessionBadge" class="badge badge-primary">Not logged in</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; flex: 1;">
+        <ul class="nav-list" id="mainTabs">
+          <li class="nav-item"><button class="nav-link active" data-tab="dashboard">Dashboard</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="vendors">Vendors</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="requisitions">Requisitions</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="purchaseOrders">Purchase Orders</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="approvals">Approvals</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="vendorPortal">Vendor Portal</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="admin">Admin</button></li>
+          <li class="nav-item"><button class="nav-link" data-tab="reports">Reports</button></li>
+        </ul>
+      </nav>
+
+      <div style="margin-top: auto;">
+        <button id="logoutBtn" class="btn btn-outline-primary btn-full d-none">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div id="tabContent"></div>
+    </main>
+  </div>
+
+  <!-- Landing Section -->
+  <section class="auth-wrapper" id="landingSection">
+    <div class="glass-panel" style="padding: 64px; max-width: 1000px; width: 100%;">
+      <div class="hero-section">
+        <h1 class="hero-title text-gradient">Smart Procurement Management</h1>
+        <p class="hero-subtitle">Streamline your purchasing process, manage vendors efficiently, and optimize your supply chain with our state-of-the-art platform.</p>
+        
+        <div class="d-flex" style="gap: 16px; justify-content: center;">
+          <button id="getStartedBtn" class="btn btn-primary" style="padding: 14px 32px; font-size: 1.1rem;">Login / Get Started</button>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3 style="margin-bottom: 8px;">Requisition Workflow</h3>
+          <p class="muted" style="font-size: 0.9rem;">Create, track, and approve internal purchase requests effortlessly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3 style="margin-bottom: 8px;">Vendor Portal</h3>
+          <p class="muted" style="font-size: 0.9rem;">Dedicated access for vendors to manage orders, submit invoices, and track payments.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 style="margin-bottom: 8px;">Real-time Approvals</h3>
+          <p class="muted" style="font-size: 0.9rem;">Accelerate the procurement cycle with instant notifications and mobile-friendly approvals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Section -->
+  <section class="auth-wrapper d-none" id="authCard">
+    <div class="auth-container glass-panel">
+      <!-- Login Area -->
+      <div class="auth-box">
+        <h2 class="section-title text-gradient">Welcome Back</h2>
+        
+        <h3 class="mb-2" style="font-size: 1.1rem; color: var(--primary);">User Login</h3>
+        <form id="userLoginForm" class="form-group mb-4">
+          <div class="form-row">
+            <input class="form-control" name="username" placeholder="Username" required />
+            <input type="password" class="form-control" name="password" placeholder="Password" required />
+          </div>
+          <button class="btn btn-primary w-100" type="submit">Login as User</button>
+        </form>
+
+        <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 24px 0;" />
+
+        <h3 class="mb-2" style="font-size: 1.1rem; color: var(--success);">Vendor Login</h3>
+        <form id="vendorLoginForm" class="form-group">
+          <div class="form-row">
+            <input type="email" class="form-control" name="email" placeholder="Vendor Email" required />
+            <input type="password" class="form-control" name="password" placeholder="Password" required />
+          </div>
+          <button class="btn btn-success w-100" type="submit">Login as Vendor</button>
+        </form>
+      </div>
+
+      <!-- Registration Area -->
+      <div class="auth-box" style="border-left: 1px solid var(--glass-border); padding-left: 32px;">
+        <h2 class="section-title text-gradient">Create Account</h2>
+        
+        <h3 class="mb-2" style="font-size: 1.1rem; color: var(--text-main);">Register User</h3>
+        <form id="userRegisterForm" class="form-group mb-4">
+          <div class="grid-2 mb-2">
+            <input class="form-control" name="username" placeholder="Username" required />
+            <input class="form-control" name="fullName" placeholder="Full name" />
+            <input type="email" class="form-control" name="email" placeholder="Email" />
+            <select class="form-control" name="role">
+              <option value="ROLE_EMPLOYEE">ROLE_EMPLOYEE</option>
+              <option value="ROLE_PROCUREMENT_MANAGER">ROLE_PROCUREMENT_MANAGER</option>
+            </select>
+          </div>
+          <input type="password" class="form-control mb-3" name="password" placeholder="Password" required />
+          <button class="btn btn-outline-primary w-100" type="submit">Register User</button>
+        </form>
+
+        <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 24px 0;" />
+
+        <h3 class="mb-2" style="font-size: 1.1rem; color: var(--text-main);">Register Vendor</h3>
+        <form id="vendorRegisterForm" class="form-group">
+          <div class="grid-2 mb-2">
+            <input class="form-control" name="companyName" placeholder="Company name" required />
+            <input type="email" class="form-control" name="email" placeholder="Email" required />
+            <input class="form-control" name="gstNumber" placeholder="GST number" />
+            <input class="form-control" name="contactNumber" placeholder="Contact number" />
+          </div>
+          <input class="form-control mb-2" name="address" placeholder="Address" />
+          <input type="password" class="form-control mb-3" name="password" placeholder="Password" required />
+          <button class="btn btn-outline-success w-100" type="submit">Register Vendor</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script src="./app.js"></script>
+</body>
+</html>
